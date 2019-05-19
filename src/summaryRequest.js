@@ -1,4 +1,6 @@
-function SummaryRequest() {}
+function SummaryRequest() {
+  this._summary = [];
+}
 
 SummaryRequest.prototype.pullSummaryViaUrl = function(url) {
   var summaryReq = new XMLHttpRequest();
@@ -10,5 +12,5 @@ SummaryRequest.prototype.pullSummaryViaUrl = function(url) {
   summaryReq.send();
   var response = summaryReq.response;
   var jsonText = JSON.parse(response);
-  return jsonText.sentences;
+  this._summary.push(jsonText.sentences);
 };

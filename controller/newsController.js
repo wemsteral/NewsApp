@@ -1,13 +1,6 @@
-function NewsController(
-  headlineList,
-  headlineListView,
-  summaryRequest,
-  summaryRequestView
-) {
+function NewsController(headlineList, headlineListView) {
   this.headlineList = headlineList;
   this.headlineListView = headlineListView;
-  this.summaryRequest = summaryRequest;
-  this.summaryRequestView = summaryRequestView;
 }
 
 NewsController.prototype.listHeadlinesOnPage = function() {
@@ -25,13 +18,10 @@ NewsController.prototype.getStoryUrlFromId = function() {
   return story.webUrl;
 };
 
-NewsController.prototype.returnStorySentences = function() {
-  return this.summaryRequest.pullSummaryViaUrl(this.getStoryUrlFromId());
+NewsController.prototype.loadStoryFromUrl = function() {
+  summaryRequest = new SummaryRequest();
+  summaryRequest.pullSummaryViaUrl(this.getStoryUrlFromId());
+  document.getElementById("sentences").innerHTML = summaryRequest._summary;
 };
 
-// NewsController.prototype.displayStorySentences = function() {
-//   var self = this;
-//   window.addEventListener("hashchange", function(){
-//     var headline = self.
-//   })
-// };
+NewsController.prototype.displayStory = function() {};
