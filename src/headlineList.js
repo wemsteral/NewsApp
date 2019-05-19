@@ -1,10 +1,10 @@
 function HeadlineList() {
-  this._headlines = [];
-  this.pullHeadlines();
+  this._stories = [];
+  this.pullPolitics();
 }
 
 HeadlineList.prototype.all = function() {
-  return this._headlines;
+  return this._stories;
 };
 
 HeadlineList.prototype.pullPolitics = function() {
@@ -17,12 +17,21 @@ HeadlineList.prototype.pullPolitics = function() {
   newReq.send();
   var response = newReq.response;
   var jsonText = JSON.parse(response);
-  return jsonText.response.results;
+  this._stories = jsonText.response.results;
 };
 
-HeadlineList.prototype.pullHeadlines = function() {
-  results = this.pullPolitics();
-  for (var i = 0; i < 10; i++) {
-    this._headlines.push(results[i].webTitle);
-  }
+// HeadlineList.prototype.pullHeadlines = function() {
+//   results = this.pullPolitics();
+//   for (var i = 0; i < 10; i++) {
+//     this._headlines.push(results[i].webTitle);
+//   }
+// };
+
+HeadlineList.prototype.searchById = function(searchterm) {
+  var found = this._stories.find(function(story) {
+    if (story.id === searchterm) {
+      return story;
+    }
+  });
+  return found;
 };
