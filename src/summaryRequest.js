@@ -12,5 +12,5 @@ SummaryRequest.prototype.pullSummaryViaUrl = function(url) {
   summaryReq.send();
   var response = summaryReq.response;
   var jsonText = JSON.parse(response);
-  this._summary.push(jsonText.sentences);
+  this._summary = jsonText.sentences;
 };

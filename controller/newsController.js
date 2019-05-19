@@ -18,10 +18,9 @@ NewsController.prototype.getStoryUrlFromId = function() {
   return story.webUrl;
 };
 
-NewsController.prototype.loadStoryFromUrl = function() {
+NewsController.prototype.displayStoryFromUrl = function() {
   summaryRequest = new SummaryRequest();
   summaryRequest.pullSummaryViaUrl(this.getStoryUrlFromId());
-  document.getElementById("sentences").innerHTML = summaryRequest._summary;
+  srView = new SummaryView(summaryRequest);
+  document.getElementById("sentences").innerHTML = srView.returnSentencesHTML();
 };
-
-NewsController.prototype.displayStory = function() {};

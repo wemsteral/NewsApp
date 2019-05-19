@@ -6,6 +6,6 @@ window.addEventListener("load", function() {
   controller.listHeadlinesOnPage();
 
   window.addEventListener("hashchange", function() {
-    controller.loadStoryFromUrl();
+    controller.displayStoryFromUrl();
   });
 });
