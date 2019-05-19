@@ -26,5 +26,3 @@ HeadlineList.prototype.pullHeadlines = function() {
     this._headlines.push(results[i].webTitle);
   }
 };
-
-module.exports = HeadlineList;
